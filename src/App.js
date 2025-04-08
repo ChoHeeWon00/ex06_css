@@ -6,12 +6,17 @@ import TestCom03 from './components/TestCom03';
 import { Route, Routes } from 'react-router-dom';
 import IndexCon from './containers/IndexCon';
 import LoginCon from './containers/LoginCon';
-
+import RegCon from './containers/RegCon';
+import ListCon from './containers/ListCon';
+import InfoCon from './containers/InfoCon';
 function App() {
   return (<>
   <Routes>
     <Route path="/" element={<IndexCon />} />
     <Route path="/login" element={<LoginCon />} />
+    <Route path="/register" element={<RegCon />} />
+    <Route path="/list" element={<ListCon />} />
+    <Route path="/info/:username" element={<InfoCon />} />
   </Routes>
   {/*
     <TestCom03 name="홍길동" />

@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { AuthContext } from "../../store/AuthContext";
 
 const WrapBlock = styled.div`
    position : fixed;
@@ -31,6 +33,11 @@ const StyledNav = styled.nav`
    a:hover { color : gray; }
 `;
 function HeaderCom() {
+    const {auth, logoutProvider} = useContext(AuthContext);
+    const onLogout = (e) => {
+        e.preventDefault();
+        logoutProvider();
+    }
   return (<>
       <WrapBlock>
         <StyledHeader>
@@ -41,10 +48,18 @@ function HeaderCom() {
                 <ul className="menu">
                     <li><Link to="/">사료</Link></li>
                     <li><Link to="/">간식</Link></li>
+                    <li><Link to="/list">LIST</Link></li>
                 </ul>
                 <ul>
-                    <li><Link to="/login">로그인</Link></li>
-                    <li><Link to="/">회원가입</Link></li>
+                    {auth.isLoggedIn ? (<>
+                        <li><Link to="/logout" onClick={onLogout}>로그아웃</Link></li>
+                        <li>{auth.username}님 로그인 상태</li>
+                    </>) : (<>
+                        <li><Link to="/login">로그인</Link></li>
+                        <li><Link to="/register">회원가입</Link></li>
+                    </>) }
+
+                    
                 </ul>
             </StyledNav>
         </StyledHeader>

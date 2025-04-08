@@ -34,20 +34,24 @@ const WhiteBox = styled.div`
     }
 `;
 
-function LoginCom() {
+function LoginCom({loading, onSubmit, onChange, username, password }) {
     return (<>
-        <AuthBlock>
+        {loading ? (<h3>login loading ...</h3>) : (
+            <AuthBlock>
             <WhiteBox>
                 <div className="login-area">
                     <Link to="/">탱이냥 이동</Link>
                 </div>
-                <StyleForm>
-                    <StyleInput placeholder="input username"/>
-                    <StyleInput placeholder="input password"/>
+                <StyleForm onSubmit={onSubmit}>
+                    <StyleInput name="username" value={username} 
+                            onChange={onChange} placeholder="input username"/>
+                    <StyleInput name="password" value={password} 
+                            onChange={onChange}  placeholder="input password"/>
                     <StyleButton width="100%" background={["178,235,244", 0.5]}>로그인</StyleButton>
                 </StyleForm>
             </WhiteBox>
         </AuthBlock>
+        ) }        
       </>);
   }
   export default LoginCom;
