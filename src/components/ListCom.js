@@ -27,13 +27,13 @@ function ListCom( { data, onInfo }){
                     <DivContent>
                         <b>아이디</b><b>비밀번호</b><b>ROLE</b>
                     </DivContent>
-                    {data && data.map( d => 
-<DivContent>
-    <span style={{ cursor : "pointer" }}
-        onClick={ () => onInfo(d.username) }>{d.username}</span>
-    <span>{d.password}</span>
-    <span>{d.role}</span>
-</DivContent>
+                    {data && data.map( (d, i) => 
+                        <DivContent key={i}>
+                            <span style={{ cursor : "pointer" }}
+                                onClick={ () => onInfo(d.username) }>{d.username}</span>
+                            <span>{d.password}</span>
+                            <span>{d.role}</span>
+                        </DivContent>
                     )}
                 </DivWrap>
             </StyleContentWrap>

@@ -9,6 +9,7 @@ import LoginCon from './containers/LoginCon';
 import RegCon from './containers/RegCon';
 import ListCon from './containers/ListCon';
 import InfoCon from './containers/InfoCon';
+import ModifyCon from './containers/ModifyCon';
 function App() {
   return (<>
   <Routes>
@@ -17,6 +18,7 @@ function App() {
     <Route path="/register" element={<RegCon />} />
     <Route path="/list" element={<ListCon />} />
     <Route path="/info/:username" element={<InfoCon />} />
+    <Route path="/modify/:username" element={<ModifyCon />} />
   </Routes>
   {/*
     <TestCom03 name="홍길동" />

@@ -23,4 +23,11 @@ const getList = () => {
 const getInfo = (username) => {
     return data_set.filter( data => data.username === username )[0]
 }
-export {getInfo, getList, login, register};
+const deleteUser = ( username ) => {
+    data_set = data_set.filter( data => data.username !== username )
+}
+const  modify = ( userData ) => {
+    data_set = data_set.filter( data => data.username !== userData.username)
+    data_set = data_set.concat( userData );
+}
+export {modify, deleteUser, getInfo, getList, login, register};

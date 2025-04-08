@@ -5,9 +5,11 @@ const initalState = {
     loading : false,
     error : null,
     data : null,
+    modify : {username : '', password : '', role:""},
 }
 const reducer = (state , action) => {
     switch (action.type) {
+        case "MODIFY" : return { ...state, modify : action.data }
         case "LIST" : return {...state, data : action.data }
         case "INITALSTATE" : return initalState;
         case 'CHANGE_INPUT':
