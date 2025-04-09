@@ -9,12 +9,21 @@ let data_set = [
 const path = "http://localhost:8080";
 
 const login = (username, password) => {
+    const form = new FormData();
+    form.append("username", username);
+    form.append("password", password);
+    //headers content-type 없으면 multipart 방식
+    return fetch(path+"/mem/login",{ method:"post", body:form })
+    
+    /*
     const form = { username, password }
     return fetch(path+"/mem/login", {
         method : "post",
         headers : {"Content-Type":"application/json"},
         body : JSON.stringify( form )
     } );
+     */
+
     /*
     const result = data_set.filter( data => data.username === username );
     if( result.length !== 0 ){
