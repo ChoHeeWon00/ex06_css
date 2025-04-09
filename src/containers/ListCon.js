@@ -17,9 +17,23 @@ function ListCon(){
             navigate("/login")
         }
     }
+    console.log(1111)
     useEffect( () => {
+        getList()
+        .then( res => {
+            console.log("res : ", res)
+            if( res.ok )
+                return res.json();
+        })
+        .then( data => {
+            console.log("list : ", data)
+            dispatch({type:"LIST", data })
+        })
+        /*
         const data = getList()
+        console.log("container data : ", data)
         dispatch({type:"LIST", data})
+        */
     },[] )
     return (<>
         <HeaderCom />

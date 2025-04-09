@@ -4,6 +4,10 @@ let data_set = [
     {username:"bbb",password :"111", role : "USER"},
     {username:"ccc",password :"111", role : "USER"},
 ]
+
+
+const path = "http://localhost:8080";
+
 const login = (username, password) => {
     const result = data_set.filter( data => data.username === username );
     if( result.length !== 0 ){
@@ -17,8 +21,8 @@ const login = (username, password) => {
 const register =( user ) => {
     data_set = data_set.concat( user )
 }
-const getList = () => {
-    return data_set;
+const getList = async () => {
+    return fetch( path+"/mem" , {method:"get"} )
 }
 const getInfo = (username) => {
     return data_set.filter( data => data.username === username )[0]
