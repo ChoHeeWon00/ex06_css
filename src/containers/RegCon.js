@@ -12,11 +12,18 @@ function RegCon(){
         dispatch({type:"CHANGE_INPUT", value, name, form:"register"})
     }
     const navigate = useNavigate()
-    const onSubmit = (e) =>{
+    const onSubmit = async (e) =>{
         e.preventDefault();
         console.log("reg submit : ", state.register)
-        register(state.register)
-        navigate("/login")
+        const res = await register(state.register)
+        if( res.ok ){
+            alert( "회원 가입을 축하합니다!!!");
+            navigate("/login")
+        }else{
+            alert( await res.text() );
+        }
+        console.log("register : ", res)
+        
     }
     return (<>
    <HeaderCom />

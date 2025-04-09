@@ -19,6 +19,13 @@ function ListCon(){
     }
     console.log(1111)
     useEffect( () => {
+        async function get(){
+            const res = await getList();
+            const data = await res.json();
+            dispatch({type:"LIST", data })
+        }
+        get();
+        /*
         getList()
         .then( res => {
             console.log("res : ", res)
@@ -27,8 +34,9 @@ function ListCon(){
         })
         .then( data => {
             console.log("list : ", data)
-            dispatch({type:"LIST", data })
+            dispatch({type:"LIST", data})
         })
+            */
         /*
         const data = getList()
         console.log("container data : ", data)
