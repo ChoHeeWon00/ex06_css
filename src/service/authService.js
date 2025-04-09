@@ -9,6 +9,13 @@ let data_set = [
 const path = "http://localhost:8080";
 
 const login = (username, password) => {
+    const form = { username, password }
+    return fetch(path+"/mem/login", {
+        method : "post",
+        headers : {"Content-Type":"application/json"},
+        body : JSON.stringify( form )
+    } );
+    /*
     const result = data_set.filter( data => data.username === username );
     if( result.length !== 0 ){
         if(result[0].password === password){
@@ -17,6 +24,7 @@ const login = (username, password) => {
         return {status : 401, data : null};
     }
     return {status : 404, data : null};
+    */
 }
 const register =( user ) => {
     //data_set = data_set.concat( user )

@@ -16,11 +16,19 @@ function LoginCon() {
     };
     const navigate = useNavigate();
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         //console.log("login onSubmit : ", state.login)
         dispatch({ type: "LOADING" });
-        const result = login(state.login.username, state.login.password);
+        const res = await login(state.login.username, state.login.password);
+        console.log( "login res : ", res )
+        if(res.ok){
+            navigate("/")
+            loginProvider(state.login.username);
+        }else{
+            dispatch({ type: "INITALSTATE" });
+        }
+        /*
         dispatch({ type: "FINISHED" });
         if( result.status === 200 ){
             //alert("로그인 성공");
@@ -30,6 +38,7 @@ function LoginCon() {
             //alert("로그인 실패");
             dispatch({ type: "INITALSTATE" });
         }
+            */
     }
     return (<>
         <HeaderCom />
