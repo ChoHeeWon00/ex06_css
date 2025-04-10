@@ -47,13 +47,21 @@ const getList = () => {
     return fetch( path+"/mem" , {method:"get"} )
 }
 const getInfo = (username) => {
-    return data_set.filter( data => data.username === username )[0]
+    //return data_set.filter( data => data.username === username )[0]
+    return fetch( path+"/mem/"+username )
 }
 const deleteUser = ( username ) => {
-    data_set = data_set.filter( data => data.username !== username )
+    //data_set = data_set.filter( data => data.username !== username )
+    return fetch(path+"/mem/"+username, { method:"delete" } )
 }
 const  modify = ( userData ) => {
-    data_set = data_set.filter( data => data.username !== userData.username)
-    data_set = data_set.concat( userData );
+    //data_set = data_set.filter( data => data.username !== userData.username)
+    //data_set = data_set.concat( userData );
+    console.log("userData.username",userData.username)
+    return fetch(path+"/mem/"+userData.username,{
+        method:"put",
+        headers : {"Content-Type":"application/json"},
+        body : JSON.stringify( userData )
+    })
 }
 export {modify, deleteUser, getInfo, getList, login, register};

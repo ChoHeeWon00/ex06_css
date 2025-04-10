@@ -8,8 +8,14 @@ function ModifyCon(){
     const {username} = useParams();
     const [state, dispatch] = useReducer(reducer, initalState);
     useEffect(()=>{
-        const data = getInfo( username )
-        dispatch({type:"MODIFY", data})
+        //const getOne = async () => {}
+        //getOne();
+        async function getOne(){
+            const res = await getInfo( username )
+            const data = await res.json();
+            dispatch({type:"MODIFY", data})
+        }
+        getOne();
     },[username])
     //console.log("MODIFY : ", state )
     const onChange = (e) => {
@@ -17,15 +23,15 @@ function ModifyCon(){
         dispatch({type:"CHANGE_INPUT", value, name, form:"modify"} )
     }
     const navigate = useNavigate();
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        //console.log("modify submit : " , state.modify )
-        //console.log("modify e.target : " , e.target )
         const formData = new FormData(e.target);
         const userData = Object.fromEntries(formData.entries() )
-        //console.log("userData : ", userData);
-        modify( userData )
-        navigate("/info/"+username)
+        const res = await modify( userData )
+        if(res.ok)
+            navigate("/info/"+username)
+        else
+            alert( await res.text() )
     }
     return (<>
         <HeaderCom />

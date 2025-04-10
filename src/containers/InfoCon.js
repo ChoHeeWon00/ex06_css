@@ -9,13 +9,15 @@ function InfoCon(){
     const {username} = useParams();
     const [state, dispatch] = useReducer(reducer, initalState);
     const navigate = useNavigate();
-    const onDelete = ( username ) => {
-        deleteUser(username);
-        navigate("/list")
+    const onDelete = async ( username ) => {
+        const res = await deleteUser(username);
+        if(res.ok)
+            navigate("/list")
     }
     useEffect( ()=>{
-        const data = getInfo(username);
-        dispatch({type:"LIST", data})
+       getInfo(username)
+        .then(res => res.json() )
+        .then( data =>  { dispatch({type:"LIST", data}) } )
     } , [username] )
     const onModifyForm = () => {
         navigate("/modify/"+username)
