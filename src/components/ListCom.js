@@ -18,7 +18,27 @@ const DivContent = styled.div`
     border-bottom : 1px solid gray;
     padding : 15px;
 `;
-function ListCom( { data, onInfo }){
+
+const DivPage = styled.div`
+    margin-top : 20px;
+    text-align : center;
+`;
+const SpanPage = styled.span`
+    width : 30px;
+    display : inline-block;
+    cursor : pointer;
+`;
+
+function ListCom( { onClick, data, onInfo }){
+    let number = []
+    if( data !== null ){
+        //let i = 1;
+        for(let i=1 ; i <= data.totalPages ; i++){
+            number.push(<SpanPage key={i} onClick={ () => onClick(i) }>{i}</SpanPage>)
+        }
+        number.push(<b key={data.totalPages + 1}>( {data.currentPage} / {data.totalPages} )</b>)
+    }
+
     return (<>
         <StyleContentBlock>
             <StyleContentWrap>
@@ -27,7 +47,7 @@ function ListCom( { data, onInfo }){
                     <DivContent>
                         <b>아이디</b><b>비밀번호</b><b>ROLE</b>
                     </DivContent>
-                    {data && data.map( (d, i) => 
+                    {data && data.list.map( (d, i) => 
                         <DivContent key={i}>
                             <span style={{ cursor : "pointer" }}
                                 onClick={ () => onInfo(d.username) }>{d.username}</span>
@@ -35,6 +55,7 @@ function ListCom( { data, onInfo }){
                             <span>{d.role}</span>
                         </DivContent>
                     )}
+                    <DivPage>{number}</DivPage>
                 </DivWrap>
             </StyleContentWrap>
         </StyleContentBlock>

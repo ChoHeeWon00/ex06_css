@@ -43,8 +43,9 @@ const register =( user ) => {
         body : JSON.stringify( user )
     })
 }
-const getList = () => {
-    return fetch( path+"/mem" , {method:"get"} )
+const getList = ( start ) => {
+    console.log("start : ", start)
+    return fetch( path+"/mem?start="+start , {method:"get"} )
 }
 const getInfo = (username) => {
     //return data_set.filter( data => data.username === username )[0]
