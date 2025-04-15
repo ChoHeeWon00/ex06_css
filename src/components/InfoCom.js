@@ -11,6 +11,7 @@ const InfoWrap = styled.div`
     border-radius : 5px;
 `;
 function InfoCom( {imageUrl, onModifyForm, onDelete, data } ){
+    console.log(imageUrl)
     return (<>
         <StyleContentBlock>
             <StyleContentWrap>

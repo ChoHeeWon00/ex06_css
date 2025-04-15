@@ -59,11 +59,12 @@ const getInfo = (username, token) => {
         }
     } )
 }
-const deleteUser = ( username, token ) => {
+const deleteUser = ( username, token, fileName ) => {
     //data_set = data_set.filter( data => data.username !== username )
     return fetch(path+"/mem/"+username, { 
         method:"delete",
-        headers : { "Authorization": `Bearer ${token}` }
+        headers : { "Authorization": `Bearer ${token}` } ,
+        body : fileName
     } )
 }
 const  modify = ( userData , token) => {

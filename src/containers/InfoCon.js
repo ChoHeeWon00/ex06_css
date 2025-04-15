@@ -14,7 +14,8 @@ function InfoCon(){
     const [imageUrl, setImageUrl] = useState();
 
     const onDelete = async ( username ) => {
-        const res = await deleteUser(username, token);
+        const res = await deleteUser(username, token, 
+                                            state.data.fileName);
         if(res.ok)
             navigate("/list")
     }
