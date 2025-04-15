@@ -15,6 +15,7 @@ function RegCom({ onChange,onSubmit,role,username,password }){
                     <StyleInput value={username} onChange={onChange} name="username" placeholder="username" />
                     <StyleInput value={password} onChange={onChange} name="password" placeholder="password" />
                     <StyleInput value={role} onChange={onChange} name="role" placeholder="role" />
+                    <input type="file" name="file" onChange={onChange} />
                     <StyleButton background={["0, 100, 238", 0.5]}>REGISTER</StyleButton>
                 </StyleForm>
                 

@@ -8,14 +8,20 @@ import { useNavigate } from "react-router-dom";
 function RegCon(){
     const [state, dispatch] = useReducer(reducer, initalState);
     const onChange = (e) => {
-        const {value, name} = e.target;
-        dispatch({type:"CHANGE_INPUT", value, name, form:"register"})
+        if( e.target.type === "file" ){
+            dispatch({type:"CHANGE_INPUT", value:e.target.files[0], 
+                                         name : "file", form:"register"})
+        }else{
+            const {value, name} = e.target;
+            dispatch({type:"CHANGE_INPUT", value, name, form:"register"})
+        }
     }
     const navigate = useNavigate()
     const onSubmit = async (e) =>{
         e.preventDefault();
         console.log("reg submit : ", state.register)
-        const res = await register(state.register)
+        const formData = new FormData( e.target );
+        const res = await register( formData )
         if( res.ok ){
             alert( "회원 가입을 축하합니다!!!");
             navigate("/login")

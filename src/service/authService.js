@@ -39,8 +39,9 @@ const register =( user ) => {
     //data_set = data_set.concat( user )
     return fetch(path+"/mem",{
         method:"post",
-        headers : {"Content-Type":"application/json"} ,
-        body : JSON.stringify( user )
+        body : user
+        //headers : {"Content-Type":"application/json"} ,
+        //body : JSON.stringify( user )
     })
 }
 const getList = ( start ) => {

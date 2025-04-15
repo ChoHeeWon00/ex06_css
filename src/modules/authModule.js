@@ -1,7 +1,7 @@
 //authModule.js
 const initalState = {
     login : {username : '', password : ''},
-    register : {username : '', password : '', role:""},
+    register : {username : '', password : '', role:"",file:null},
     loading : false,
     error : null,
     data : null,
