@@ -79,4 +79,7 @@ const  modify = ( userData , token) => {
         body : JSON.stringify( userData )
     })
 }
-export {modify, deleteUser, getInfo, getList, login, register};
+const getImage = ( fileName ) => {
+    return fetch(path+`/mem/${fileName}/image`)
+}
+export {getImage, modify, deleteUser, getInfo, getList, login, register};
