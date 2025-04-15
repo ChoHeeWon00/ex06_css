@@ -47,21 +47,31 @@ const getList = ( start ) => {
     console.log("start : ", start)
     return fetch( path+"/mem?start="+start , {method:"get"} )
 }
-const getInfo = (username) => {
+const getInfo = (username, token) => {
     //return data_set.filter( data => data.username === username )[0]
-    return fetch( path+"/mem/"+username )
+    //return fetch( path+"/mem/"+username )
+    return fetch( path+"/mem/"+username,{
+        method : "get",
+        headers : {
+            "Content-Type":"application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    } )
 }
 const deleteUser = ( username ) => {
     //data_set = data_set.filter( data => data.username !== username )
     return fetch(path+"/mem/"+username, { method:"delete" } )
 }
-const  modify = ( userData ) => {
+const  modify = ( userData , token) => {
     //data_set = data_set.filter( data => data.username !== userData.username)
     //data_set = data_set.concat( userData );
     console.log("userData.username",userData.username)
     return fetch(path+"/mem/"+userData.username,{
         method:"put",
-        headers : {"Content-Type":"application/json"},
+        headers : {
+            "Content-Type":"application/json",
+            "Authorization": `Bearer ${token}`
+        },
         body : JSON.stringify( userData )
     })
 }

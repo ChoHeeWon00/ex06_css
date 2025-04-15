@@ -15,7 +15,9 @@ function InfoCon(){
             navigate("/list")
     }
     useEffect( ()=>{
-       getInfo(username)
+        //const auth = JSON.parse( sessionStorage.getItem("auth") )
+        //console.log("info token : ",  auth.token )
+       getInfo(username, sessionStorage.getItem("token") )
         .then(res => res.json() )
         .then( data =>  { dispatch({type:"LIST", data}) } )
     } , [username] )

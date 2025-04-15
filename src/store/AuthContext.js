@@ -7,10 +7,11 @@ const AuthContext = createContext()
 const AuthProvider = ({children}) => {
     const [auth, setAuth] = useState(
         JSON.parse(sessionStorage.getItem("auth")) || initalState);
-    const loginProvider = ( username ) => {
+    const loginProvider = ( username, token ) => {
         setAuth({isLoggedIn:true, username})
         sessionStorage.setItem("auth",
-            JSON.stringify( {isLoggedIn:true, username} ) )
+            JSON.stringify( {isLoggedIn:true, username } ) )
+        sessionStorage.setItem("token",token)
     }
     const logoutProvider = () => {
         setAuth(initalState);

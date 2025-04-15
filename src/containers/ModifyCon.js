@@ -7,16 +7,17 @@ import { initalState, reducer } from "../modules/authModule";
 function ModifyCon(){
     const {username} = useParams();
     const [state, dispatch] = useReducer(reducer, initalState);
+    const token = sessionStorage.getItem("token")
     useEffect(()=>{
         //const getOne = async () => {}
         //getOne();
         async function getOne(){
-            const res = await getInfo( username )
+            const res = await getInfo( username , token )
             const data = await res.json();
             dispatch({type:"MODIFY", data})
         }
         getOne();
-    },[username])
+    },[username, token])
     //console.log("MODIFY : ", state )
     const onChange = (e) => {
         const {value, name} = e.target;
@@ -27,7 +28,7 @@ function ModifyCon(){
         e.preventDefault();
         const formData = new FormData(e.target);
         const userData = Object.fromEntries(formData.entries() )
-        const res = await modify( userData )
+        const res = await modify( userData , token )
         if(res.ok)
             navigate("/info/"+username)
         else
