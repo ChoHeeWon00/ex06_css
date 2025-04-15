@@ -58,9 +58,12 @@ const getInfo = (username, token) => {
         }
     } )
 }
-const deleteUser = ( username ) => {
+const deleteUser = ( username, token ) => {
     //data_set = data_set.filter( data => data.username !== username )
-    return fetch(path+"/mem/"+username, { method:"delete" } )
+    return fetch(path+"/mem/"+username, { 
+        method:"delete",
+        headers : { "Authorization": `Bearer ${token}` }
+    } )
 }
 const  modify = ( userData , token) => {
     //data_set = data_set.filter( data => data.username !== userData.username)

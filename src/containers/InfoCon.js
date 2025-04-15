@@ -9,18 +9,19 @@ function InfoCon(){
     const {username} = useParams();
     const [state, dispatch] = useReducer(reducer, initalState);
     const navigate = useNavigate();
+    const token = sessionStorage.getItem("token");
     const onDelete = async ( username ) => {
-        const res = await deleteUser(username);
+        const res = await deleteUser(username, token);
         if(res.ok)
             navigate("/list")
     }
     useEffect( ()=>{
         //const auth = JSON.parse( sessionStorage.getItem("auth") )
         //console.log("info token : ",  auth.token )
-       getInfo(username, sessionStorage.getItem("token") )
+       getInfo(username, token )
         .then(res => res.json() )
         .then( data =>  { dispatch({type:"LIST", data}) } )
-    } , [username] )
+    } , [username, token] )
     const onModifyForm = () => {
         navigate("/modify/"+username)
     }
